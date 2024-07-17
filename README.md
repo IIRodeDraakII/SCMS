@@ -1,5 +1,6 @@
 
-School Management System
+**School Management System**
+
 The School Management System is a web application designed to streamline administrative tasks and facilitate communication in educational institutions. It utilizes modern technologies such as C#, ASP.NET Core, Entity Framework Core, Angular, and PostgreSQL to provide a robust and scalable solution.
 
 Features
