@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
+
 builder.Services.AddDbContext<SchoolContext>(options =>
            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
 
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();

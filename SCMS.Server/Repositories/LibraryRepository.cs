@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+namespace Server.Repositories;
 public class LibraryRepository : ILibraryRepository
 {
     private readonly SchoolContext _context;

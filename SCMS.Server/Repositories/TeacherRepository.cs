@@ -1,8 +1,11 @@
-public class TeacherRepository : Repository<Teacher>, ITeacherRepository
+namespace Server.Repositories
 {
-    public TeacherRepository(SchoolContext context) : base(context)
+    public class TeacherRepository : Repository<Teacher>, ITeacherRepository
     {
+        public TeacherRepository(SchoolContext context) : base(context)
+        {
+        }
+
+
     }
-
-
 }

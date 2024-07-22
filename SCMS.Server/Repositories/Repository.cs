@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-
+namespace Server.Repositories;
 public class Repository<T> : IRepository<T> where T : class
 {
     protected readonly SchoolContext _context;
