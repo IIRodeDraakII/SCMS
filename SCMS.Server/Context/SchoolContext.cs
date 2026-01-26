@@ -13,6 +13,7 @@ public class SchoolContext : DbContext
     public DbSet<Library> Libraries { get; set; }
     public DbSet<LibraryItem> LibraryItems { get; set; }
     public DbSet<Event> Events { get; set; }
+    public DbSet<LibraryCheckout> LibraryCheckouts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,7 +26,18 @@ public class SchoolContext : DbContext
         modelBuilder.Entity<Library>().ToTable("Libraries");
         modelBuilder.Entity<LibraryItem>().ToTable("LibraryItems");
         modelBuilder.Entity<Event>().ToTable("Events");
+        modelBuilder.Entity<LibraryCheckout>().ToTable("LibraryCheckouts");
 
+        modelBuilder.Entity<LibraryCheckout>()
+            .HasOne(c => c.LibraryItem)
+            .WithMany(li => li.Checkouts)
+            .HasForeignKey(c => c.LibraryItemId)
+            .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<LibraryCheckout>()
+            .HasOne(c => c.Student)
+            .WithMany(s => s.Checkouts)
+            .HasForeignKey(c => c.StudentId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

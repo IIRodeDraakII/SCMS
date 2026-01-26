@@ -5,4 +5,5 @@ public class Student
     public DateTime DateOfBirth { get; set; }
     public int Age { get; set; }
     public string Grade { get; set; }
+    public ICollection<LibraryCheckout> Checkouts { get; set; }
 }

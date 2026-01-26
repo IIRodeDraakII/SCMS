@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 public class StudentsController : ControllerBase
 {
     private readonly IStudentRepository _studentRepository;
+    private readonly ILibraryCheckoutRepository _checkoutRepository;
 
-    public StudentsController(IStudentRepository studentRepository)
+    public StudentsController(IStudentRepository studentRepository, ILibraryCheckoutRepository checkoutRepository)
     {
         _studentRepository = studentRepository;
+        _checkoutRepository = checkoutRepository;
     }
 
     [HttpGet]
@@ -57,5 +59,12 @@ public class StudentsController : ControllerBase
     {
         await _studentRepository.DeleteAsync(id);
         return NoContent();
+    }
+
+    [HttpGet("{studentId}/checkouts")]
+    public async Task<IActionResult> GetStudentCheckouts(int studentId, [FromQuery] bool activeOnly = false)
+    {
+        var checkouts = await _checkoutRepository.GetStudentCheckoutsAsync(studentId, activeOnly);
+        return Ok(checkouts);
     }
 }
