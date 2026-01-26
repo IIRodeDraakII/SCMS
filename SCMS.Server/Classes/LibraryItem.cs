@@ -6,4 +6,5 @@ public class LibraryItem
     public bool IsCheckedOut { get; set; }
     public int LibraryId { get; set; }
     public Library Library { get; set; }
+    public ICollection<LibraryCheckout> Checkouts { get; set; }
 }
